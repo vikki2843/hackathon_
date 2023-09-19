@@ -1,0 +1,16 @@
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 187-246-098
+INFO:werkzeug:127.0.0.1 - - [15/Sep/2023 18:58:02] "GET / HTTP/1.1" 200 -
+DEBUG:google.auth._default:Checking None for explicit credentials as part of auth process...
+DEBUG:google.auth._default:Checking Cloud SDK credentials as part of auth process...
+DEBUG:google.auth._default:Cloud SDK credentials not found on disk; not using them
+DEBUG:google.auth.transport._http_client:Making request: GET http://169.254.169.254
+WARNING:google.auth.compute_engine._metadata:Compute Engine Metadata server unavailable on attempt 1 of 3. Reason: timed out
+DEBUG:google.auth.transport._http_client:Making request: GET http://169.254.169.254
+WARNING:google.auth.compute_engine._metadata:Compute Engine Metadata server unavailable on attempt 2 of 3. Reason: timed out
+DEBUG:google.auth.transport._http_client:Making request: GET http://169.254.169.254
+WARNING:google.auth.compute_engine._metadata:Compute Engine Metadata server unavailable on attempt 3 of 3. Reason: timed out
+WARNING:google.auth._default:Authentication failed using Compute Engine authentication due to unavailable metadata server.
+ERROR:app:Error processing video: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
+INFO:werkzeug:127.0.0.1 - - [15/Sep/2023 18:58:22] "POST /upload HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\paivi\\OneDrive\\Desktop\\Hackathon 2.0\\app.py', reloading

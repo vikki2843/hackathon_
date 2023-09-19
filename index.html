@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Translator</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <header class="text-center mb-4">
+        <h1>Video Translator</h1>
+    </header>
+
+    <!-- Video Upload Section -->
+    <section id="uploadSection">
+        <input type="file" class="form-control-file mb-3" id="videoUpload">
+        <select class="form-control mb-3" id="languageSelect">
+            <option value="en-US">English</option>
+            <option value="hi-IN">Hindi</option>
+            <!-- Add more language options here -->
+        </select>
+        
+
+<!-- Voice selection dropdown -->
+<select class="form-control mb-3" id="voiceSelect">
+    <option value="MALE">Male</option>
+    <option value="FEMALE">Female</option>
+</select>
+
+
+
+<script>
+document.getElementById('processBtn').addEventListener('click', function() {
+    const videoFile = document.getElementById('videoUpload').files[0];
+    const language = document.getElementById('languageSelect').value;
+    const voiceType = document.getElementById('voiceSelect').value;  // New
+
+    const formData = new FormData();
+    formData.append('video', videoFile);
+    formData.append('language', language);
+    formData.append('voiceType', voiceType);  // New
+
+    // ... rest of the JavaScript code ...
+});
+</script>
+
+        <button class="btn btn-primary mb-3" id="processBtn">Process Video</button>
+    </section>
+    
+
+    <!-- Video Display Section -->
+    <section id="outputSection" style="display: none;">
+        <video width="100%" controls id="translatedVideo"></video>
+    </section>
+</div>
+
+<!-- Scripts -->
+<script>
+document.getElementById('processBtn').addEventListener('click', function() {
+    const videoFile = document.getElementById('videoUpload').files[0];
+    const language = document.getElementById('languageSelect').value;
+
+    const formData = new FormData();
+    formData.append('video', videoFile);
+    formData.append('language', language);
+
+    // AJAX request to backend using Fetch API
+    fetch('/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.video_url) {
+            document.getElementById('translatedVideo').src = data.video_url;
+            document.getElementById('outputSection').style.display = 'block';
+        } else {
+            alert('Error processing the video. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error processing the video. Please try again.');
+    });
+});
+</script>
+</body>
+</html>
